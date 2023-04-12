@@ -8,101 +8,40 @@ import { fetchData } from "../../apis/blogFetch";
 const Profile = () => {
   const username = "Madhur Dandev";
   const followers = 100000;
-  const load = 1;
-
-  // const [blogs, setBlogs] = useState([
-  //   {
-  //     id: 1,
-  //     username: "madhur",
-  //     userImage: "/images/default-user.png",
-  //     likes: 5,
-  //     dateCreated: "14/4/2023",
-  //     title:
-  //       "This is title Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  //     image: "/images/broken_img.jpeg",
-  //   },
-  //   {
-  //     id: 1,
-  //     username: "madhur",
-  //     userImage: "/images/default-user.png",
-  //     likes: 5,
-  //     dateCreated: "14/4/2023",
-  //     title:
-  //       "This is title Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  //     image: "/images/broken_img.jpeg",
-  //   },
-  //   {
-  //     id: 1,
-  //     username: "madhur",
-  //     userImage: "/images/default-user.png",
-  //     likes: 5,
-  //     dateCreated: "14/4/2023",
-  //     title:
-  //       "This is title Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  //     image: "/images/broken_img.jpeg",
-  //   },
-  // ]);
 
   const [blogs, setBlogs] = useState([]);
-  // const [hasMore, setHasMore] = useState(false);
-  // const [page, setPage] = useState(1);
-  const [loadDetail, setLoadDetail] = useState({
-    page: 1,
-    hasMore: false,
-  });
+  const [haveMore, setHaveMore] = useState(false);
+  const [page, setPage] = useState(1);
 
-  // const fetchData = async () => {
-  //   // console.log(page, hasMore);
-  //   console.log("running");
-  //   if (!showLoading) {
-  //     setShowLoading(true);
-  //     const resp = await fetch(
-  //       `http://localhost:5000/api/blogs/getuserblogs/1?p=${page}`,
-  //       {
-  //         method: "GET",
-  //         credentials: "include",
-  //       }
-  //     );
+  const getData = async () => {
+    const data = await fetchData(page);
 
-  //     const data = await resp.json();
-
-  //     if (!data.message) {
-  //       setHasMore(data.haveMore);
-  //       if (data.haveMore) {
-  //         setPage(page + 1);
-  //       }
-  //       setBlogs([...blogs, ...data.blogs]);
-  //     }
-
-  //     setShowLoading(false);
-  //   }
-  // };
-
-  const fetData = async () => {
-    const data = await fetchData(loadDetail.page);
-    if (!data.message) {
-      console.log(data.haveMore);
-      setBlogs([...blogs, ...data.blogs]);
-      if (data.haveMore) {
-        setLoadDetail({ page: loadDetail.page + 1, hasMore: data.haveMore });
-      } else {
-        setLoadDetail({ page: loadDetail.page, hasMore: data.haveMore });
+    if (data) {
+      setPage(page + 1);
+      if (!data.message) {
+        setBlogs([...blogs, ...data.blogs]);
+        setHaveMore(data.haveMore);
+        if (data.haveMore) {
+          console.log(page);
+        }
       }
     }
-    // console.log(data);
   };
 
-  // useEffect(() => {
-  //   console.log("hi");
-  //   fetData();
-  // }, []);
-
   useEffect(() => {
-    console.log("hi");
-    fetData();
-  }, [load]);
-
-  // console.log(blogs);
+    getData();
+  }, []);
+  // window.addEventListener("scroll", (e) => {
+  //   const blogContainer = document.querySelector(".user-blogs-container");
+  //   if (
+  //     window.innerHeight + window.scrollY ===
+  //     blogContainer.offsetTop + blogContainer.clientHeight
+  //   ) {
+  //     if (haveMore) {
+  //       getData();
+  //     }
+  //   }
+  // });
 
   return (
     <>
@@ -118,7 +57,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <BlogList blogs={blogs} loadDetail={loadDetail} fetData={fetData} />
+      <BlogList blogs={blogs} getData={getData} haveMore={haveMore} />
     </>
   );
 };

@@ -8,8 +8,6 @@ import BlogPost from "./components/BlogPost/BlogPost";
 import Profile from "./components/UserProfile/Profile";
 
 function App() {
-  // const [count, setCount] = useState(0);
-
   return (
     <div className="App">
       <Router>
