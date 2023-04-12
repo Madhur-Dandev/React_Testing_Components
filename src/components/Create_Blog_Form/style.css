@@ -1,0 +1,99 @@
+.create-blog-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url("images/bg2.jpg");
+    background-attachment: fixed;
+}
+
+.create-blog-form-container .create-blog-heading {
+    font-size: 2.25rem;
+    /* color: #383838; */
+    color: whitesmoke;
+}
+  
+.create-blog-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px rgb(0, 255, 200, .35);
+}
+
+.input-container {
+    width: 100%;
+}
+  
+.form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+  
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+  
+input[type="text"],
+input[type="file"],
+.create-blog-btn {
+    /* padding: 0.5rem; */
+    width: 100%;
+    border: 1px solid grey;
+    padding: 7px 20px;
+    font-size: 1rem;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* input[type="text"],
+.create-blog-btn {
+    padding: 7px 20px;
+    font-size: 1rem;
+} */
+  
+.ql-container {
+    height: 250px;
+    /* resize: vertical; */
+    overflow-y: scroll;
+}
+
+.ql-tooltip {
+    left:0 !important;
+}
+  
+button[type="submit"] {
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 1rem;
+}
+  
+button[type="submit"]:hover {
+    background-color: #0052cc;
+}
+
+@media screen and (max-width: 500px) {
+    .create-blog-form { 
+        padding: 1rem;
+    }
+}
