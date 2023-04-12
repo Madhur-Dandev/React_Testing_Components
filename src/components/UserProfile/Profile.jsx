@@ -3,11 +3,12 @@ import "./Profile.css";
 import UserImage from "/images/default-user.png";
 import Banner from "/images/bg2.jpg";
 import BlogList from "./BlogList";
+import { fetchData } from "../../apis/blogFetch";
 
 const Profile = () => {
   const username = "Madhur Dandev";
   const followers = 100000;
-  const [showLoading, setShowLoading] = useState(false);
+  const load = 1;
 
   // const [blogs, setBlogs] = useState([
   //   {
@@ -43,42 +44,65 @@ const Profile = () => {
   // ]);
 
   const [blogs, setBlogs] = useState([]);
-  const [hasMore, setHasMore] = useState(false);
-  const [page, setPage] = useState(1);
+  // const [hasMore, setHasMore] = useState(false);
+  // const [page, setPage] = useState(1);
+  const [loadDetail, setLoadDetail] = useState({
+    page: 1,
+    hasMore: false,
+  });
 
-  console.log("hi");
+  // const fetchData = async () => {
+  //   // console.log(page, hasMore);
+  //   console.log("running");
+  //   if (!showLoading) {
+  //     setShowLoading(true);
+  //     const resp = await fetch(
+  //       `http://localhost:5000/api/blogs/getuserblogs/1?p=${page}`,
+  //       {
+  //         method: "GET",
+  //         credentials: "include",
+  //       }
+  //     );
 
-  const fetchData = async () => {
-    // console.log(page, hasMore);
-    console.log("running");
-    if (!showLoading) {
-      setShowLoading(true);
-      const resp = await fetch(
-        `http://localhost:5000/api/blogs/getuserblogs/1?p=${page}`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+  //     const data = await resp.json();
 
-      const data = await resp.json();
+  //     if (!data.message) {
+  //       setHasMore(data.haveMore);
+  //       if (data.haveMore) {
+  //         setPage(page + 1);
+  //       }
+  //       setBlogs([...blogs, ...data.blogs]);
+  //     }
 
-      if (!data.message) {
-        setHasMore(data.haveMore);
-        if (data.haveMore) {
-          setPage(page + 1);
-        }
-        setBlogs([...blogs, ...data.blogs]);
+  //     setShowLoading(false);
+  //   }
+  // };
+
+  const fetData = async () => {
+    const data = await fetchData(loadDetail.page);
+    if (!data.message) {
+      console.log(data.haveMore);
+      setBlogs([...blogs, ...data.blogs]);
+      if (data.haveMore) {
+        setLoadDetail({ page: loadDetail.page + 1, hasMore: data.haveMore });
+      } else {
+        setLoadDetail({ page: loadDetail.page, hasMore: data.haveMore });
       }
-
-      setShowLoading(false);
     }
+    // console.log(data);
   };
+
+  // useEffect(() => {
+  //   console.log("hi");
+  //   fetData();
+  // }, []);
 
   useEffect(() => {
     console.log("hi");
-    fetchData();
-  }, []);
+    fetData();
+  }, [load]);
+
+  // console.log(blogs);
 
   return (
     <>
@@ -94,12 +118,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <BlogList
-        blogs={blogs}
-        hasMore={hasMore}
-        fetchData={fetchData}
-        showLoading={showLoading}
-      />
+      <BlogList blogs={blogs} loadDetail={loadDetail} fetData={fetData} />
     </>
   );
 };
