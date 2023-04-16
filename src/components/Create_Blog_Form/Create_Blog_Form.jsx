@@ -8,7 +8,10 @@ const Create_Blog_Form = () => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [fileObj, setFileObj] = useState(null);
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName] = useState("/images/broken_img.jpeg");
+
+  const path = window.location.href.split("/")[3];
+
   //   const modules = {
   //     toolbar: [
   //       ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -66,23 +69,32 @@ const Create_Blog_Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData["title"] = title;
-    formData["description"] = content;
-    if (fileObj) {
-      formData["blog_img"] = fileObj;
-    }
+    // formData["title"] = title;
+    // formData["description"] = content;
+    // if (fileObj) {
+    //   formData["blog_img"] = fileObj;
+    // }
 
-    console.log(formData);
+    // console.log(formData);
+    formData.append("title", title);
+    formData.append("description", content);
+    formData.append("blog_img", fileObj);
+
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
   };
 
   const handleRemoveImage = () => {
-    setFileName("");
+    setFileName("/images/broken_img.jpeg");
     setFileObj(null);
   };
 
   return (
     <div className="create-blog-form-container">
-      <h2 className="create-blog-heading">Express Something</h2>
+      <h2 className="create-blog-heading">
+        {path === "createBlog" ? "Express Something" : "Update Blog"}
+      </h2>
       <form className="create-blog-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <input
@@ -95,7 +107,7 @@ const Create_Blog_Form = () => {
         </div>
         <div className="input-container">
           <p htmlFor="blog-img">
-            {fileName === "" && (
+            {/* {fileName === "" && (
               <>
                 <button>
                   <label htmlFor="blog-img">Select Blog Image</label>
@@ -107,6 +119,43 @@ const Create_Blog_Form = () => {
               <>
                 <button onClick={handleRemoveImage}>Remove Image</button> :{" "}
                 {fileName}
+              </>
+            )} */}
+            <img
+              src={fileObj ? URL.createObjectURL(fileObj) : fileName}
+              alt={title}
+              style={{ width: "100%" }}
+            />
+            {fileName === "/images/broken_img.jpeg" ? (
+              <>
+                <button
+                  style={{
+                    border: "2px solid grey",
+                    borderRadius: "5px",
+                    backgroundColor: "transparent",
+                    padding: "5px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <label htmlFor="blog-img">Select Blog Image</label>
+                </button>
+                : No Image Selected
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={handleRemoveImage}
+                  style={{
+                    border: "2px solid grey",
+                    borderRadius: "5px",
+                    backgroundColor: "transparent",
+                    padding: "5px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Remove Image
+                </button>{" "}
+                : {fileName}
               </>
             )}
           </p>
@@ -130,7 +179,7 @@ const Create_Blog_Form = () => {
           />
         </div>
         <button className="create-blog-btn" id="create-blog-btn" type="submit">
-          Create Blog
+          {path === "createBlog" ? "Create Blog" : "Update"}
         </button>
       </form>
     </div>

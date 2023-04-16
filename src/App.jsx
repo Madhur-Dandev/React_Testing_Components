@@ -6,6 +6,9 @@ import "./App.css";
 import Create_Blog_Form from "./components/Create_Blog_Form/Create_Blog_Form";
 import BlogPost from "./components/BlogPost/BlogPost";
 import Profile from "./components/UserProfile/Profile";
+import FullScreenPrompt from "./components/ItemUpdate/FullScreenPrompt";
+import ShareButton from "./components/Share/ShareButton";
+import UpdateBlog from "./components/BlogPost/UpdateBlog";
 
 function App() {
   return (
@@ -26,6 +29,15 @@ function App() {
                   <li>
                     <Link to="/profile">Profile Page</Link>
                   </li>
+                  <li>
+                    <Link to="/prompt">Full Screen Prompt</Link>
+                  </li>
+                  <li>
+                    <Link to="/sharebutton">Share Link</Link>
+                  </li>
+                  <li>
+                    <Link to="/updateblog">Update Blog</Link>
+                  </li>
                 </ul>
               </div>
             }
@@ -33,6 +45,9 @@ function App() {
           <Route path="/create-blog" element={<Create_Blog_Form />} />
           <Route path="/blogPost/:id" element={<BlogPost />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/prompt" element={<FullScreenPrompt />} />
+          <Route path="/sharebutton" element={<ShareButton />} />
+          <Route path="/updateblog" element={<UpdateBlog />} />
         </Routes>
       </Router>
     </div>

@@ -3,9 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
     background-image: url("images/bg2.jpg");
     background-attachment: fixed;
+    padding: 20px;
 }
 
 .create-blog-form-container .create-blog-heading {
