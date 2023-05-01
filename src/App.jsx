@@ -9,6 +9,10 @@ import Profile from "./components/UserProfile/Profile";
 import FullScreenPrompt from "./components/ItemUpdate/FullScreenPrompt";
 import ShareButton from "./components/Share/ShareButton";
 import UpdateBlog from "./components/BlogPost/UpdateBlog";
+import Swiperjs from "./components/Effects/Swiperjs";
+import TextTransitionComp from "./components/Effects/TextTransitionComp";
+import CarouselComp from "./components/Effects/Carousel";
+import HeroContainer from "./components/Effects/HeroContainer";
 
 function App() {
   return (
@@ -38,6 +42,18 @@ function App() {
                   <li>
                     <Link to="/updateblog">Update Blog</Link>
                   </li>
+                  <li>
+                    <Link to="/swiperjs">Swiper JS</Link>
+                  </li>
+                  <li>
+                    <Link to="/carousel">Carousel</Link>
+                  </li>
+                  <li>
+                    <Link to="/texttransition">Text Transition</Link>
+                  </li>
+                  <li>
+                    <Link to="/heroContainer">Hero Component</Link>
+                  </li>
                 </ul>
               </div>
             }
@@ -48,6 +64,10 @@ function App() {
           <Route path="/prompt" element={<FullScreenPrompt />} />
           <Route path="/sharebutton" element={<ShareButton />} />
           <Route path="/updateblog" element={<UpdateBlog />} />
+          <Route path="/swiperjs" element={<Swiperjs />} />
+          <Route path="/carousel" element={<CarouselComp />} />
+          <Route path="/texttransition" element={<TextTransitionComp />} />
+          <Route path="/heroContainer" element={<HeroContainer />} />
         </Routes>
       </Router>
     </div>
