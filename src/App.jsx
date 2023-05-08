@@ -13,6 +13,7 @@ import Swiperjs from "./components/Effects/Swiperjs";
 import TextTransitionComp from "./components/Effects/TextTransitionComp";
 import CarouselComp from "./components/Effects/Carousel";
 import HeroContainer from "./components/Effects/HeroContainer";
+import AlertCaller from "./components/Effects/AlertCaller";
 
 function App() {
   return (
@@ -54,6 +55,9 @@ function App() {
                   <li>
                     <Link to="/heroContainer">Hero Component</Link>
                   </li>
+                  <li>
+                    <Link to="/alerts">Alerts</Link>
+                  </li>
                 </ul>
               </div>
             }
@@ -68,6 +72,7 @@ function App() {
           <Route path="/carousel" element={<CarouselComp />} />
           <Route path="/texttransition" element={<TextTransitionComp />} />
           <Route path="/heroContainer" element={<HeroContainer />} />
+          <Route path="/alerts" element={<AlertCaller />} />
         </Routes>
       </Router>
     </div>
