@@ -1,22 +1,24 @@
-import { useEffect } from "react";
-import { useRef } from "react";
+import { useRef, useEffect, useContext } from "react";
+import context from "../../contexts/context";
 
 const Alert = () => {
+  const alert = useContext(context);
   const alertText = useRef();
   const alertDiv = useRef();
   const aText =
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quibusdam natus consequuntur veniam labore atque.";
+  let clearTextInt, textAddInt, invokeClearTextTO;
 
   const alertTextClear = () => {
     let initIndex = aText.length;
-    const to = setInterval(() => {
+    clearTextInt = setInterval(() => {
       if (initIndex >= 0) {
         alertText.current.innerHTML = aText.slice(0, initIndex);
         initIndex--;
       } else {
         alertText.current.classList.add("hidden");
         alertDiv.current.classList.remove("top-3");
-        clearInterval(to);
+        clearInterval(clearTextInt);
       }
     });
   };
@@ -25,22 +27,31 @@ const Alert = () => {
     if (e.target.classList.contains("top-3")) {
       alertText.current.classList.remove("hidden");
       let initIndex = 0;
-      const to = setInterval(() => {
+      textAddInt = setInterval(() => {
         if (initIndex < aText.length) {
           alertText.current.innerHTML += aText[initIndex];
           initIndex++;
         } else {
-          clearInterval(to);
-          setTimeout(() => {
+          clearInterval(textAddInt);
+          invokeClearTextTO = setTimeout(() => {
             alertTextClear();
           }, 2000);
         }
       });
+    } else {
+      alert.setShowAlert(false);
     }
   };
 
   useEffect(() => {
-    alertDiv.current.classList.add("top-3");
+    setTimeout(() => {
+      alertDiv.current.classList.add("top-3");
+    }, 100);
+    return () => {
+      clearInterval(clearTextInt);
+      clearInterval(textAddInt);
+      clearTimeout(invokeClearTextTO);
+    };
   }, []);
 
   return (

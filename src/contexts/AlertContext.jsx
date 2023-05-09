@@ -10,3 +10,5 @@ const AlertGlobal = ({ children }) => {
     </context.Provider>
   );
 };
+
+export default AlertGlobal;
