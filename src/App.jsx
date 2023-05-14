@@ -11,10 +11,11 @@ import TextTransitionComp from "./components/Effects/TextTransitionComp";
 import CarouselComp from "./components/Effects/Carousel";
 import HeroContainer from "./components/Effects/HeroContainer";
 import AlertCaller from "./components/Effects/AlertCaller";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-slate-600 text-slate-100 relative">
       <Router>
         <Routes>
           <Route
@@ -55,6 +56,9 @@ function App() {
                   <li>
                     <Link to="/alerts">Alerts</Link>
                   </li>
+                  <li>
+                    <Link to="/auth">Auth</Link>
+                  </li>
                 </ul>
               </div>
             }
@@ -70,6 +74,7 @@ function App() {
           <Route path="/texttransition" element={<TextTransitionComp />} />
           <Route path="/heroContainer" element={<HeroContainer />} />
           <Route path="/alerts" element={<AlertCaller />} />
+          <Route path="/auth/:type" element={<Auth />} />
         </Routes>
       </Router>
     </div>
