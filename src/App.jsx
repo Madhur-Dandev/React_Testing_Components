@@ -1,5 +1,5 @@
 import "./App.css";
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Create_Blog_Form from "./components/Create_Blog_Form/Create_Blog_Form";
 import BlogPost from "./components/BlogPost/BlogPost";
 import Profile from "./components/UserProfile/Profile";
@@ -17,7 +17,7 @@ import Rerender from "./components/Rerender/Rerender";
 function App() {
   return (
     <div className="App bg-slate-600 text-slate-100 relative">
-      <Router>
+      <Router basename="/React_Testing_Components">
         <Routes>
           <Route
             path="/"
@@ -68,7 +68,7 @@ function App() {
             }
           />
           <Route
-            path="React_Testing_Components/"
+            path="/React_Testing_Components"
             element={
               <div>
                 <ul>
