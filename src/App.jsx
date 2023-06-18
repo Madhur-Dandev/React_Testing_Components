@@ -67,6 +67,54 @@ function App() {
               </div>
             }
           />
+          <Route
+            path="React_Testing_Components/"
+            element={
+              <div>
+                <ul>
+                  <li>
+                    <Link to="/create-blog">Create Blog Form</Link>
+                  </li>
+                  <li>
+                    <Link to="/blogPost">Blog Post</Link>
+                  </li>
+                  <li>
+                    <Link to="/profile">Profile Page</Link>
+                  </li>
+                  <li>
+                    <Link to="/prompt">Full Screen Prompt</Link>
+                  </li>
+                  <li>
+                    <Link to="/sharebutton">Share Link</Link>
+                  </li>
+                  <li>
+                    <Link to="/updateblog">Update Blog</Link>
+                  </li>
+                  <li>
+                    <Link to="/swiperjs">Swiper JS</Link>
+                  </li>
+                  <li>
+                    <Link to="/carousel">Carousel</Link>
+                  </li>
+                  <li>
+                    <Link to="/texttransition">Text Transition</Link>
+                  </li>
+                  <li>
+                    <Link to="/heroContainer">Hero Component</Link>
+                  </li>
+                  <li>
+                    <Link to="/alerts">Alerts</Link>
+                  </li>
+                  <li>
+                    <Link to="/auth">Auth</Link>
+                  </li>
+                  <li>
+                    <Link to="/render/data">Rerender</Link>
+                  </li>
+                </ul>
+              </div>
+            }
+          />
           <Route path="/create-blog" element={<Create_Blog_Form />} />
           <Route path="/blogPost/:id" element={<BlogPost />} />
           <Route path="/profile" element={<Profile />} />
