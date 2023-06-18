@@ -12,6 +12,7 @@ import CarouselComp from "./components/Effects/Carousel";
 import HeroContainer from "./components/Effects/HeroContainer";
 import AlertCaller from "./components/Effects/AlertCaller";
 import Auth from "./components/Auth/Auth";
+import Rerender from "./components/Rerender/Rerender";
 
 function App() {
   return (
@@ -59,6 +60,9 @@ function App() {
                   <li>
                     <Link to="/auth">Auth</Link>
                   </li>
+                  <li>
+                    <Link to="/render/data">Rerender</Link>
+                  </li>
                 </ul>
               </div>
             }
@@ -75,6 +79,7 @@ function App() {
           <Route path="/heroContainer" element={<HeroContainer />} />
           <Route path="/alerts" element={<AlertCaller />} />
           <Route path="/auth/:type" element={<Auth />} />
+          <Route path="/render/:data?" element={<Rerender />} />
         </Routes>
       </Router>
     </div>
