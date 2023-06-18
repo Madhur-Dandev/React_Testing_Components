@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Create_Blog_Form from "./components/Create_Blog_Form/Create_Blog_Form";
 import BlogPost from "./components/BlogPost/BlogPost";
 import Profile from "./components/UserProfile/Profile";
